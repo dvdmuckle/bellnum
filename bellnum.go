@@ -4,8 +4,11 @@ import "fmt"
 import "os"
 import "strconv"
 
-func Bellnum(bellstart int) (belltotal int) {
-	return 1
+func Bellnum(bellIn int) (belltotal int) {
+	if bellIn <= 1 {
+		return 1
+	}
+	return 2
 }
 
 func main() {
@@ -13,11 +16,11 @@ func main() {
 		fmt.Println("Please input a number")
 		return
 	}
-	bellstart, err := strconv.Atoi(os.Args[1])
+	bellIn, err := strconv.Atoi(os.Args[1])
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	bellend := Bellnum(bellstart)
-	fmt.Printf("The Bell number of %d is %d\n", bellstart, bellend)
+	bellOut := Bellnum(bellIn)
+	fmt.Printf("The Bell number of %d is %d\n", bellIn, bellOut)
 }
