@@ -5,7 +5,7 @@ import "os"
 import "strconv"
 
 func Bellnum(bellstart int) (belltotal int) {
-	return 0
+	return 1
 }
 
 func main() {
