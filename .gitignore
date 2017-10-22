@@ -1,0 +1,10 @@
+*
+!*.go
+!*.yml
+!*.sh
+!LICENSE
+!CONTRIBUTORS
+!*.enc
+!*.spec
+!.gitignore
+!README
