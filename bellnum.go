@@ -4,7 +4,7 @@ import "fmt"
 import "os"
 import "strconv"
 
-func bellnum(bellstart int) (belltotal int) {
+func Bellnum(bellstart int) (belltotal int) {
 	return 0
 }
 
@@ -18,6 +18,6 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	bellend := bellnum(bellstart)
+	bellend := Bellnum(bellstart)
 	fmt.Printf("The Bell number of %d is %d\n", bellstart, bellend)
 }
