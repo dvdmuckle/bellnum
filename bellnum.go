@@ -3,9 +3,17 @@ package main
 import "fmt"
 import "os"
 import "strconv"
+import "math"
+
+func factorial(x int) int {
+	if x == 0 {
+		return 1
+	}
+	return x * factorial(x-1)
+}
 
 // Wraper function for real function
-func Bellnum(bellIn int) (belltotal int) {
+func Bellnum(bellIn int) int {
 	//Handle the base case to avoid any unecessary computation
 	if bellIn <= 1 {
 		return 1
@@ -14,11 +22,11 @@ func Bellnum(bellIn int) (belltotal int) {
 	//bellSlice[0][0] = 1
 	//bellFinal := bellcurse(bellIn, bellSlice)
 	//return bellFinal[len(bellFinal)-1][len(bellFinal)-1]
-	return bellfor(bellIn)
+	return bellmath(bellIn)
 }
 
 //Double for loop version of function
-func bellfor(bellIn int) (bellOut int) {
+func bellfor(bellIn int) int {
 	bellArr := make([][]int, bellIn)
 	for n, _ := range bellArr {
 		bellArr[n+1] = make([]int, n+1)
@@ -46,6 +54,15 @@ func bellfor(bellIn int) (bellOut int) {
 // Actual function that recursively goes through Bell triangle
 func bellcurse(bellIn int, bellArrIn [][]int) (bellArrOut [][]int) {
 	return nil
+}
+
+//Mathematical implementation of function
+func bellmath(bellIn int) int {
+	var bn int
+	for i := 1; i <= 2*bellIn; i++ {
+		bn += i ^ bellIn/factorial(i)
+	}
+	return int(math.Ceil((math.Pow(math.E, -1) * float64(bn))))
 }
 
 func main() {
