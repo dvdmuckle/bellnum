@@ -10,10 +10,37 @@ func Bellnum(bellIn int) (belltotal int) {
 	if bellIn <= 1 {
 		return 1
 	}
-	var bellSlice [][]int
-	bellSlice[0][0] = 1
-	bellFinal := bellcurse(bellIn, bellSlice)
-	return bellFinal[len(bellFinal)-1][len(bellFinal)-1]
+	//var bellSlice [][]int
+	//bellSlice[0][0] = 1
+	//bellFinal := bellcurse(bellIn, bellSlice)
+	//return bellFinal[len(bellFinal)-1][len(bellFinal)-1]
+	return bellfor(bellIn)
+}
+
+//Double for loop version of function
+func bellfor(bellIn int) (bellOut int) {
+	bellArr := make([][]int, bellIn)
+	for n, _ := range bellArr {
+		bellArr[n+1] = make([]int, n+1)
+	}
+	bellArr[0][0] = 1
+	for i, row := range bellArr {
+		for j, cell := range row {
+			fmt.Printf("%d ", cell)
+			//If we're looking at the first element of a row
+			if j == 0 {
+				if i == 0 {
+					//If we're looking at the top of the triangle
+					goto loopback
+				}
+				bellArr[i][j] = bellArr[i-1][j]
+			}
+			fmt.Println("")
+			bellArr[i][j] = bellArr[i-1][j-1] + bellArr[i][j-1]
+		}
+	loopback:
+	}
+	return bellArr[bellIn-1][bellIn-1]
 }
 
 // Actual function that recursively goes through Bell triangle
