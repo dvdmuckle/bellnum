@@ -5,7 +5,7 @@ import "os"
 import "strconv"
 import "math"
 
-func factorial(x int) int {
+func factorial(x float64) float64 {
 	if x == 0 {
 		return 1
 	}
@@ -13,7 +13,7 @@ func factorial(x int) int {
 }
 
 // Wraper function for real function
-func Bellnum(bellIn int) int {
+func Bellnum(bellIn int) float64 {
 	//Handle the base case to avoid any unecessary computation
 	if bellIn <= 1 {
 		return 1
@@ -22,7 +22,7 @@ func Bellnum(bellIn int) int {
 	//bellSlice[0][0] = 1
 	//bellFinal := bellcurse(bellIn, bellSlice)
 	//return bellFinal[len(bellFinal)-1][len(bellFinal)-1]
-	return bellmath(bellIn)
+	return bellmath(float64(bellIn))
 }
 
 //Double for loop version of function
@@ -57,12 +57,12 @@ func bellcurse(bellIn int, bellArrIn [][]int) (bellArrOut [][]int) {
 }
 
 //Mathematical implementation of function
-func bellmath(bellIn int) int {
-	var bn int
-	for i := 1; i <= 2*bellIn; i++ {
-		bn += i ^ bellIn/factorial(i)
+func bellmath(bellIn float64) float64 {
+	var bn float64
+	for i := 1; i <= 2*int(bellIn); i++ {
+		bn += math.Pow(float64(i), bellIn) / factorial(float64(i))
 	}
-	return int(math.Ceil((math.Pow(math.E, -1) * float64(bn))))
+	return math.Ceil(math.Pow(math.E, -1) * bn)
 }
 
 func main() {
@@ -76,5 +76,5 @@ func main() {
 		return
 	}
 	bellOut := Bellnum(bellIn)
-	fmt.Printf("The Bell number of %d is %d\n", bellIn, bellOut)
+	fmt.Printf("The Bell number of %d is %d\n", bellIn, int(bellOut))
 }

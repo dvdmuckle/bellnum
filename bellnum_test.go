@@ -5,7 +5,7 @@ import "testing"
 func TestBellsum(t *testing.T) {
 	tables := []struct {
 		x    int
-		bell int
+		bell float64
 	}{
 		{0, 1},
 		{1, 1},
@@ -31,7 +31,7 @@ func TestBellsum(t *testing.T) {
 	for _, table := range tables {
 		bell := Bellnum(table.x)
 		if bell != table.bell {
-			t.Errorf("Bell of %d was incorrect, got %d, want %d", table.x, bell, table.bell)
+			t.Errorf("Bell of %d was incorrect, got %f, want %f", table.x, bell, table.bell)
 		}
 	}
 }
